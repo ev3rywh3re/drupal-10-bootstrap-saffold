@@ -15,5 +15,35 @@ ddev drush uli
 
 # Here are my notes to setup a Drupa site with composer, a bootstrap subthme for custom posttyps and views. AI generated.
 
+# Inital start - Copied from other Drupal 10 did cause issues. NOTE:
+
+ddev stop --unlist drupal-10-jess
+ddev config --project-type=drupal --docroot=web
+
+# Pantheon.io - Initalize and setup sandbox site - info
+Location: https://dev-jplanck-drupal-10-bootstrap-test.pantheonsite.io/
+admin:
+jplanck
+;P is 73553!
+
+# Notes from Pantheon setup:
+Multi-site: No multi-sites detected.
+Folder Structure: Contrib and custom modules not found.
+sites/default: sites/default exists.
+sites/sites.php: sites.php does not exist.
+sites/default/services.yml: services.yml does not exist! Copy the default.service.yml to services.yml and see https://www.drupal.org/documentation/install/settings-file for details.
+Create services.yml file inside sites/default directory by copying default.services.yml file. See https://www.drupal.org/documentation/install/settings-file for details.
+Fast 404 pages: Fast 404 pages are enabled.
+sites/default/settings.php: settings.php exists and is not a symbolic link.
+Superfluous files in /sites: No unnecessary files detected.
+
+# Reference for Pantheon setup:
+https://docs.pantheon.io/add-site-dashboard#install-the-cms
+
+Sites:
+https://dev-jplanck-drupal-10-bootstrap-test.pantheonsite.io/
 
 
+
+# Also still checking and building locak testing environment.
+ ddev composer install
