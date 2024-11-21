@@ -1,0 +1,19 @@
+
+# Drupal 10 Notes
+
+## Composer
+
+- `composer require drush/drush`
+- `composer require drupal/core-project-message`
+
+# Note - HA! how to login to the Drupal site.
+You have to setup the Drush admin account.
+  ddev drush site:install --account-name=admin --account-pass=admin -y
+
+# Other drush commands like - give me a one time login link!
+ddev drush uli 
+
+# Here are my notes to setup a Drupa site with composer, a bootstrap subthme for custom posttyps and views. AI generated.
+
+
+
