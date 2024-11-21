@@ -42,8 +42,18 @@ https://docs.pantheon.io/add-site-dashboard#install-the-cms
 
 Sites:
 https://dev-jplanck-drupal-10-bootstrap-test.pantheonsite.io/
-
+https://live-jplanck-drupal-10-bootstrap-test.pantheonsite.io/
+https://live-jplanck-drupal-10-bootstrap-test.pantheonsite.io/
 
 
 # Also still checking and building locak testing environment.
- ddev composer install
+ddev composer install
+
+# Composer installs and theme installs
+ddev composer require drupal/bootstrap
+
+# just in cause
+ddev composer install
+
+# Create new sub-theme
+ddev drush then bootstrap
