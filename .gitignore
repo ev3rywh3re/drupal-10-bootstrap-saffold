@@ -1,10 +1,8 @@
 # Customizations
-._DS_Store
+.DS_Store
 .gitignore
 .gitattributes
 .editorconfig
-
-
 
 # gitignore template for Drupal 8 projects
 #
