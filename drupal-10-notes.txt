@@ -23,8 +23,6 @@ ddev config --project-type=drupal --docroot=web
 # Pantheon.io - Initalize and setup sandbox site - info
 Location: https://dev-jplanck-drupal-10-bootstrap-test.pantheonsite.io/
 admin:
-jplanck
-;P is 73553!
 
 # Notes from Pantheon setup:
 Multi-site: No multi-sites detected.
@@ -57,3 +55,93 @@ ddev composer install
 
 # Create new sub-theme
 ddev drush then bootstrap
+
+# Stepping into the custom post type and view parts of this process
+
+# Launch directly into that local Drupal site dashboard
+ddev drush uli
+
+Create a new custom Content Type with an image field and other custom fields:
+Navigate to Structure > Content types > Add content type in the Drupal admin interface.
+Add the following fields:
+Image Field: Add an image field to allow users to upload images.
+Text Field: Add a text field for additional information.
+Date Field: Add a date field if needed.
+Boolean Field: Add a boolean field for true/false values.
+Link Field: Add a link field for URLs.
+
+# Custom Post Type
+Jess Image Type
+Machine name: jess_image_type
+
+
+# Note, we may need to reconcidter because of Media Module:
+navigate to your site's administrative area, go to "Extend" under the "Structure" tab, find the "Media" module in the list of core modules, and check the checkbox next to it to enable it; you might need to click "Install" to activate the module
+
+https://stackoverflow.com/questions/78550781/drupal-image-field-missing-in-block-types-edit-block-manage-fields
+
+-- Activated Media and Media Library - extensions - for core.
+
+
+# Pantheon setup stuff - tring to Clone 
+https://docs.pantheon.io/terminus/install
+
+- Installed rsa.pub on pantheon in user profiles.
+- Installed terminus for authentication.
+brew install pantheon-systems/external/terminus
+
+terminus auth:login --email=jess@funroe.net --machine-token=<machine_token>
+
+terminus auth:login --email=jess@funroe.net  --machine-token=42Ap3boGBW3Ot7whq3Uu79G7T9qzpnwLRmBONyjYvnBdG
+
+### Lets go through SSH Key process again
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+ssh-keygen -t ed25519 -C "jess@funroe.net"
+/Users/jess-n-k8/.ssh/id_ed25519.pub
+
+# Hadd to regenerate due to lack of pantheon support for ed-255
+/Users/jess-n-k8/.ssh/id_rsa.pub
+
+# add to pantheron.
+
+# get machine -key from pantheon for ddev remote. Pull down GIT.
+# ADD to global ddev config.
+web_environment:
+    - TERMINUS_MACHINE_TOKEN=42Ap3boGBW3Ot7whq3Uu79G7T9qzpnwLRmBONyjYvnBdG
+
+The pantheon pull down is in the work direrecotry.
+
+terminus auth:login --machine-token=_opkPRCi_2zin3rJcqye9NesoFoilBTuFbw7pLwxxphnj
+
+  ssh-key:add                Associates a SSH public key with the currently logged-in user.
+  ssh-key:list 
+
+  site:list
+
+  terminus ssh-key:add ~/.ssh/id_rsa.pub
+
+eval $(ssh-agent -s)
+  
+  9ee9bccb-b9da-45fc-b1bf-78003f0c00e8
+
+  ## Don't forget to add your damn ssl keys.
+  ssh-add ~/.ssh/id_rsa
+
+# DEV abd Pantheon
+https://ddev.readthedocs.io/en/latest/users/providers/pantheon/
+
+# Setting up pull for pantheon dev. 
+.dev/providers/pantheon.yaml
+# The sitename need to be put in.. environment get from -- terminus site:list
+jplanck-drupal-10-bootstrap-test
+
+ddev pull pantheon
+ddev push
+
+ddev drush user:password admin "administrative" 
+
+ddev drush upwd --password="admin" admin
+
+ drush user:password USERNAME "SOMEPASSWORD"
+ ddev drush user:password admin "admin"
